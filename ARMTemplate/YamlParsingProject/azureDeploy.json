@@ -1,0 +1,43 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "testObj": {
+            "type": "array"
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2023-04-01",
+            "name": "virtualNetwork1",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "displayName": "vnetDemo"
+            },
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "10.0.0.0/16"
+                    ]
+                },
+                "copy": [
+                    {
+                        "name": "subnets",
+                        "count": "[length(parameters('testObj'))]",
+                        "input": {
+                        "name": "[parameters('testObj')[copyIndex('subnets')].name]",
+                        "properties": {
+                            "addressPrefix": "[parameters('testObj')[copyIndex('subnets')].mask]"
+                            }
+                        }
+                    }
+                    
+                ]
+            }
+        }
+    ],
+    "outputs": {}
+}

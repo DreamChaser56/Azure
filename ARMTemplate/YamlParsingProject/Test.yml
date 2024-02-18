@@ -1,0 +1,15 @@
+- secret: ""
+- appID: ""
+- objID: ""
+- tentID: ""
+- subID: ""
+- rg: DemoTest
+- subnets:
+  - name: Test1
+    mask: "10.0.1.0/24"
+  - name: Test2
+    mask: "10.0.2.0/24"
+- virtualnetworks:
+  - vnet1:
+    - name: Test1
+    - mask: 10.0.0.0/24
