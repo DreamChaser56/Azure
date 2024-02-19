@@ -23,6 +23,10 @@
                         "10.0.0.0/16"
                     ]
                 },
+                /*
+                Use Copy Function to loop the subnets passed in the "testObj"
+                parameter to create mutiple subnets in ARM Deployment
+                */
                 "copy": [
                     {
                         "name": "subnets",
