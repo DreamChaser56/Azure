@@ -15,9 +15,10 @@ Pulled Secret, TenantID, and ApplicationID from YAML File to login into my Azure
 tenant. The parameters use in the "Connect-AzAccount" command came from a Service 
 Principal I create in Azure.
 #>
-[array]$subnets = @{name = $yaml.subnets[0].name; mask = $yaml.subnets[0].mask}
-[array]$subnets += @{name = $yaml.subnets[1].name; mask = $yaml.subnets[1].mask}
-
+$subnets = @()
+For ($i=0; $i -lt $yaml.subnets.Count; $i++) {
+    [array]$subnets += @{name = $yaml.subnets[$i].name; mask = $yaml.subnets[$i].mask}
+}
 <#Line 18-19
 Here is a workaround for passing a YAML object in "New-AzResourceGroupDeployment" command. 
 When passing a regular PSObject in the command, I recieved an error because ARM wanted
