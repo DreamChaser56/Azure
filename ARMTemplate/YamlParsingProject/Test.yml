@@ -1,9 +1,5 @@
-- secret: ""
-- appID: ""
-- objID: ""
-- tentID: ""
-- subID: ""
-- rg: DemoTest
+rg: rarytest
+networks:
 - subnets:
   - name: Test1
     mask: "10.0.1.0/24"
